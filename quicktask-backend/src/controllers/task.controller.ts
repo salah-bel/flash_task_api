@@ -21,3 +21,15 @@ export const getTaskById = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Erreur serveur' });
     }
 };
+
+export const createTask = async (req: Request, res: Response) => {
+    // const { title, description, userId } = req.body;
+    console.log(req.body);
+    try {
+        const task = await taskService.create(req.body);
+        res.status(201).json(task);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+};
